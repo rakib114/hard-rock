@@ -2,6 +2,7 @@
 const searchSong = async () => {
   const searchText = document.getElementById("search-filed").value.trim();
   const url = `https://api.lyrics.ovh/suggest/:${searchText}`;
+  toggleSpiner(true);
   try {
     const res = await fetch(url);
     const data = await res.json();
@@ -31,6 +32,7 @@ const dispalySongs = (songs) => {
      </div>
       `;
     songContainer.appendChild(songDiv);
+    toggleSpiner(false);
   });
   const songLyric = document.getElementById("song-lyrics");
   songLyric.style.display = "none";
@@ -67,4 +69,13 @@ const displayLyric = (lyrics) => {
 const displayError = (error) => {
   const errorTag = document.getElementById("error-msg");
   errorTag.innerText = error;
+};
+
+const toggleSpiner = (show) => {
+  const spinner = document.getElementById("loading-spiner");
+  if (show) {
+    spinner.classList.add("d-flex");
+  } else {
+    spinner.classList.remove("d-flex");
+  }
 };
