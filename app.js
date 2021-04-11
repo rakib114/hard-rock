@@ -12,6 +12,16 @@ const searchSong = async () => {
   }
 };
 
+//Impliment Search box click on kyeboard Enter
+document
+  .getElementById("search-filed")
+  .addEventListener("keypress", function (event) {
+    if (event.key == "Enter") {
+      document.getElementById("search-btn").click();
+    }
+  });
+
+//Display result
 const dispalySongs = (songs) => {
   const songContainer = document.getElementById("song-container");
   songContainer.style.display = "block";
